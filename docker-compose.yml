@@ -1,0 +1,32 @@
+version: '3.8'
+
+services:
+  worker:
+    container_name: testworker
+    build:
+      context: .
+      dockerfile: compose/Dockerfile
+    env_file:
+      - env.example
+    ports: []
+    command: sleep 1d
+    # copy test project in dockerfile
+    # or mounting test projects to dedicated folder path
+
+  sonarqube:
+    image: sonarqube:8.9.7-community
+    container_name: sonarqube
+    volumes:
+      - sonarqubedata:/opt/sonarqube/data
+      - sonarqubedataextensions:/opt/sonarqube/extensions
+      - sonarqubedatalogs:/opt/sonarqube/logs
+    expose:
+      - "9000"
+
+networks:
+  default:
+
+volumes:
+  sonarqubedata:
+  sonarqubedataextensions:
+  sonarqubedatalogs:

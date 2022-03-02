@@ -1,0 +1,10 @@
+# Exclude all
+*
+
+# Exceptions:
+!compose
+!requirements
+!worker
+!.env*
+# Required in compose/onprem/docker-compose.build.yml
+!env*
